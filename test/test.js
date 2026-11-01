@@ -1,0 +1,20 @@
+'use strict';
+const assert = require('assert');
+const { listSnapshots, closest, fmtTs, toIso } = require('../lib');
+(async () => {
+    assert.strictEqual(fmtTs('2020-01-02'), '20200102');
+    assert.strictEqual(toIso('20200102030405'), '2020-01-02T03:04:05Z');
+    const all = await listSnapshots('example.com', { from: '2010-01-01', to: '2012-12-31', limit: 50 });
+    assert(all.length >= 5, 'got ' + all.length);
+    assert(all.every((r) => r.timestamp >= '2010' && r.timestamp < '2013' && r.snapshotUrl.startsWith('https://web.archive.org/web/')));
+    const monthly = await listSnapshots('example.com', { from: '2015-01-01', to: '2015-12-31', collapse: 'timestamp:6', limit: 100 });
+    assert(monthly.length <= 12 && monthly.length >= 1, 'monthly ' + monthly.length);
+    const ok = await listSnapshots('example.com', { from: '2015-01-01', to: '2016-12-31', statusCodes: [200], limit: 20 });
+    assert(ok.length > 0 && ok.every((r) => r.statusCode === 200));
+    const latest = await listSnapshots('example.com', { limit: 3, newestFirst: true });
+    assert(latest.length === 3, 'latest ' + latest.length);
+    const c = await closest('example.com', '2019-06-01');
+    assert(c && c.capturedAt && /^https:\/\/web\.archive\.org\//.test(c.snapshotUrl), 'closest');
+    assert.strictEqual(await closest('this-domain-has-never-existed-99817.invalid'), null);
+    console.log('OK all', all.length, 'monthly', monthly.length, 'closest', c.capturedAt);
+})().catch((e) => { console.error('FAIL', e); process.exit(1); });

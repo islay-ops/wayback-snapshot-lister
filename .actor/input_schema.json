@@ -1,0 +1,18 @@
+{
+  "title": "Wayback Machine input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": { "title": "Mode", "type": "string", "description": "snapshots = list archived captures of a URL (CDX); closest = find the capture nearest to given dates (CDX closest search).", "enum": ["snapshots", "closest"], "default": "snapshots", "editor": "select" },
+    "urls": { "title": "URLs", "type": "array", "description": "Pages or domains, e.g. example.com or https://news.ycombinator.com/.", "editor": "stringList", "prefill": ["example.com"] },
+    "dates": { "title": "Dates (mode: closest)", "type": "array", "description": "Dates like 2020-06-01. One lookup per URL and date. Leave empty for the most recent capture.", "editor": "stringList", "prefill": [] },
+    "fromDate": { "title": "From date (mode: snapshots)", "type": "string", "description": "Only captures on/after this date, e.g. 2018-01-01.", "editor": "textfield" },
+    "toDate": { "title": "To date (mode: snapshots)", "type": "string", "description": "Only captures on/before this date.", "editor": "textfield" },
+    "matchType": { "title": "Match type", "type": "string", "description": "exact = this URL only; prefix = everything under the path; host = whole host; domain = host and subdomains.", "enum": ["exact", "prefix", "host", "domain"], "default": "exact", "editor": "select" },
+    "collapse": { "title": "Collapse duplicates", "type": "string", "description": "Reduce output: one capture per day / month / year, or only when content changed (unique digest).", "enum": ["none", "timestamp:8", "timestamp:6", "timestamp:4", "digest"], "default": "none", "editor": "select" },
+    "statusCodes": { "title": "HTTP status filter", "type": "array", "description": "Only captures with these HTTP status codes, e.g. 200.", "editor": "stringList", "prefill": [] },
+    "mimeType": { "title": "MIME type filter", "type": "string", "description": "e.g. text/html or application/pdf.", "editor": "textfield" },
+    "maxSnapshotsPerUrl": { "title": "Max snapshots per URL", "type": "integer", "description": "Upper bound on rows per URL.", "default": 500, "minimum": 1, "maximum": 100000 },
+    "newestFirst": { "title": "Newest first", "type": "boolean", "description": "Return the most recent captures first instead of the oldest.", "default": false }
+  }
+}

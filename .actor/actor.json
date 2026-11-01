@@ -1,0 +1,11 @@
+{
+  "actorSpecification": 1,
+  "name": "wayback-snapshots-cdx",
+  "title": "Wayback Machine Snapshot Lister & Closest-Snapshot Lookup",
+  "version": "0.1",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": { "dataset": { "actorSpecification": 1, "views": { "overview": { "title": "Snapshots", "transformation": { "fields": ["queryUrl", "capturedAt", "statusCode", "mimeType", "original", "snapshotUrl"] }, "display": { "component": "table", "properties": { "queryUrl": {}, "capturedAt": {}, "statusCode": {}, "mimeType": {}, "snapshotUrl": {} } } } } } },
+  "dockerfile": "../Dockerfile"
+}

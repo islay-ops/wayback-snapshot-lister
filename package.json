@@ -1,0 +1,10 @@
+{
+  "name": "wayback-snapshots-cdx",
+  "version": "1.0.0",
+  "description": "Internet Archive Wayback Machine snapshot lists and closest-snapshot lookup via official CDX and availability APIs",
+  "main": "main.js",
+  "scripts": { "start": "node main.js", "test": "node test/test.js" },
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": { "apify": "^3.7.2" }
+}

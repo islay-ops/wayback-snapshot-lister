@@ -1,0 +1,7 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Wayback output",
+  "properties": {
+    "snapshots": { "type": "string", "title": "Snapshots", "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview" }
+  }
+}
