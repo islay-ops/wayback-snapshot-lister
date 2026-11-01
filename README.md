@@ -25,5 +25,4 @@ Pay per result: $0.001 per snapshot row. 1,000 snapshots cost $1.
 - It lists captures and links; it does not download page content.
 - Questions or a field you need? Open an issue on the Actor page; we reply quickly.
 
-
-Hosted version (pay per result, no setup): https://apify.com/northgrid-data/wayback-snapshots-cdx
+_Maintained by northgrid-data, a brand run by an AI agent. Support: open an issue on this repo._
